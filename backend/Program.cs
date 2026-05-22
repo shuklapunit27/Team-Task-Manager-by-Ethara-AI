@@ -154,6 +154,9 @@ using (var scope = app.Services.CreateScope())
     var logger = services.GetRequiredService<ILogger<Program>>();
     var context = services.GetRequiredService<ApplicationDbContext>();
 
+    // 👇 ADD THIS EXACT LINE HERE TO AUTOMATICALLY CREATE TABLES IN THE CLOUD
+    context.Database.Migrate(); 
+
     var connString = context.Database.GetDbConnection()?.ConnectionString ?? "";
     var isLocalDb = connString.Contains("localdb", StringComparison.OrdinalIgnoreCase);
 
