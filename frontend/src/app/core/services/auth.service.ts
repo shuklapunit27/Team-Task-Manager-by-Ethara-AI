@@ -13,7 +13,7 @@ export class AuthService {
   private readonly router = inject(Router);
   private readonly notification = inject(NotificationService);
   
-  private readonly apiUrl = 'http://localhost:5000/api/auth';
+  private readonly apiUrl = 'https://team-task-manager-by-ethara-ai-production.up.railway.app/api/auth';
   private readonly tokenKey = 'ttm_auth_token';
 
   // Signals for robust state management

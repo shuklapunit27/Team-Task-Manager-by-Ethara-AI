@@ -8,7 +8,7 @@ import { ApiResponse, TaskItem, TaskDashboard } from '../models';
 })
 export class TaskService {
   private readonly http = inject(HttpClient);
-  private readonly apiUrl = 'http://localhost:5000/api/tasks';
+  private readonly apiUrl = 'https://team-task-manager-by-ethara-ai-production.up.railway.app/api/tasks';
 
   getTasks(projectId?: number): Observable<ApiResponse<TaskItem[]>> {
     let params = new HttpParams();

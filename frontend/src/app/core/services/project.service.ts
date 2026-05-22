@@ -8,7 +8,7 @@ import { ApiResponse, Project, ProjectMember } from '../models';
 })
 export class ProjectService {
   private readonly http = inject(HttpClient);
-  private readonly apiUrl = 'http://localhost:5000/api/projects';
+  private readonly apiUrl = 'https://team-task-manager-by-ethara-ai-production.up.railway.app/api/projects';
 
   getProjects(): Observable<ApiResponse<Project[]>> {
     return this.http.get<ApiResponse<Project[]>>(this.apiUrl);
