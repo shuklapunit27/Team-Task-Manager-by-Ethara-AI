@@ -154,8 +154,16 @@ using (var scope = app.Services.CreateScope())
     var logger = services.GetRequiredService<ILogger<Program>>();
     var context = services.GetRequiredService<ApplicationDbContext>();
 
-    // 👇 ADD THIS EXACT LINE HERE TO AUTOMATICALLY CREATE TABLES IN THE CLOUD
-    context.Database.Migrate(); 
+    try 
+    {
+        logger.LogInformation("Enforcing raw database schema generation engine...");
+        // This forces EF Core to build all tables matching your DbSets if they are missing
+        context.Database.EnsureCreated(); 
+    }
+    catch (Exception ex)
+    {
+        logger.LogError(ex, "An error occurred during EnsureCreated execution.");
+    }
 
     var connString = context.Database.GetDbConnection()?.ConnectionString ?? "";
     var isLocalDb = connString.Contains("localdb", StringComparison.OrdinalIgnoreCase);
