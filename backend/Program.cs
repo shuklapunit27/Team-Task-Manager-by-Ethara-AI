@@ -51,17 +51,20 @@ builder.Services.AddAuthentication(options =>
 });
 
 // 4. CORS Policy Setup
+// 4. CORS Policy Setup
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngularFrontend", policy =>
     {
-        policy.WithOrigins("http://localhost:4200")
+        policy.WithOrigins(
+                "http://localhost:4200",
+                "https://team-task-manager-by-ethara-ai-production-588a.up.railway.app"
+              )
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials();
     });
 });
-
 // 5. Controller Configuration (Prevent Circular JSON and Standardize Validation Response)
 builder.Services.AddControllers()
     .ConfigureApiBehaviorOptions(options =>
