@@ -8,6 +8,6 @@ RUN npm run build -- --configuration=production
 
 # Step 2: Serve the Application using Nginx
 FROM nginx:alpine
-COPY --from=build /app/dist/frontend/browser /usr/share/nginx/html
+COPY --from=build /app/dist/team-task-manager /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
